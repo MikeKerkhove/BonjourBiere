@@ -137,4 +137,25 @@ class SecurityController extends AbstractController
 
         return $this->redirectToRoute('admin_dashboard');
     }
+
+    /**
+     * @Route("/admin/picture/delete/{id}", name="security_picture_delete")
+     */
+    public function pictureDelete($id)
+    {
+        $repo = $this->getDoctrine()->getRepository(Pictures::class);
+        $manager = $this->getDoctrine()->getManager();
+
+        // Récupération de la photo dont l'id correspond
+        $pic = $repo->find($id);
+
+        // Suppression de la photo en BDD
+        $manager->remove($pic);
+        $manager->flush();
+
+        // Ajout d'un message de succes
+        $this->addFlash('success', 'La photo a bien été supprimé !');
+
+        return $this->redirectToRoute('admin_dashboard');
+    } 
 }
