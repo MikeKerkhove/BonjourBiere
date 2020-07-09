@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br>
+    <h2 class="text-center" style="margin-bottom: 5rem;">Dashboard</h2>
+    <br>
+    <h3 class="text-center" style="margin-bottom: 5rem;">Liste des photos</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Active</th>
+        <th scope="col">Proposée par</th>
+        <th scope="col">Valide</th>
+        <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pic in pictures %}
+            <tr class="table-info">
+                <th scope="row">{{ pic.id }}</th>
+                <td>{{ pic.name }}</td>
+                {% if pic.active == 1 %}
+                    <td>Yes</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
+                <td>{{ pic.proposedBy }}</td>
+                {% if pic.valid == 1 %}
+                    <td>Yes</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
+                <td>
+                    {% if pic.valid == 1 %}
+                        <a href="" class="btn btn-outline-danger">Supprimer</a>
+                    {% else %}
+                        <a href="{{ path('security_picture_update', {'id': pic.id}) }}" class="btn btn-outline-success">Valider</a>
+                        <a href="" class="btn btn-outline-danger">Supprimer</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination justify-content-center" style="margin-top: 5rem;margin-bottom: 5rem;">
+        {{ knp_pagination_render(pictures) }}
+    </div>
+    <hr style="width:50%;text-align:center;" class="bg-info">
+    <h3 class="text-center" style="margin-bottom: 5rem;">Liste des administrateurs</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nom d'utilisateur</th>
+        <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr class="table-info">
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.email }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                    <a href="{{ path('security_admin_delete', {'id': user.id}) }}" class="btn btn-outline-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center" style="margin-top: 1rem;">
+        <a class="btn btn-primary" href="{{ path('security_registration') }}" role="button">Créer un administrateur</a>
+    </div>
+{% endblock body %}

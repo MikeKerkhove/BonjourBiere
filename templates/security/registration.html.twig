@@ -3,7 +3,7 @@
 {% block body %}
     <br>
     <div class='text-center'>
-        <h2 style="margin-bottom: 5rem;"> Inscription sur Bonjour La Bière !</h2>
+        <h2 style="margin-bottom: 5rem;"> Créer un administrateur pour Bonjour La Bière !</h2>
     <br>
     {{ form_start(form) }}
 
@@ -12,7 +12,7 @@
     {{ form_row(form.password, {'attr': {'placeholder': "Votre mot de passe"}, 'label': 'Mot de passe :'}) }}
     {{ form_row(form.confirm_password, {'attr': {'placeholder': "Confirmation du mot de passe"}, 'label': 'Confirmez votre mot de passe :'}) }}
     <div class="text-center" style="margin-top: 5rem;">
-        <button type="submit" class="btn btn-success">Inscription !</button>
+        <button type="submit" class="btn btn-success">Créer</button>
     </div>
         {{ form_end(form) }}
     </div>
