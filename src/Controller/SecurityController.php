@@ -20,13 +20,17 @@ class SecurityController extends AbstractController
      */
     public function registration(Request $request, UserPasswordEncoderInterface $encoder)
     {
+        // Création d'un nouvel administrateur
         $user = new User();
         $manager = $this->getDoctrine()->getManager();
 
+        // Création du formulaire
         $form = $this->createForm(RegistrationType::class, $user);
 
+        // Récupération des données du formulaire
         $form->handleRequest($request);
 
+        // Vérification des données, Encodage du mot de passe
         if($form->isSubmitted() && $form->isValid()) {
     
             $hash = $encoder->encodePassword($user, $user->getPassword());
@@ -35,7 +39,8 @@ class SecurityController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
-
+            
+            // Ajout d'un message de succes à la création
             $this->addFlash('success', 'Votre utilisateur a bien été créé !');
 
             return $this->redirectToRoute('security_login');
@@ -62,9 +67,12 @@ class SecurityController extends AbstractController
      * @Route("/admin", name="admin_dashboard")
      */
     public function admin(UserRepository $users, PicturesRepository $pics, Request $request, PaginatorInterface $paginator) {
+
+        // Récupération des tous les administrateurs ainsi que des photos
         $allUsers = $users->findAll();
         $allPics = $pics->findAll();
 
+        // Création de la pagination des photos a partir de 10 éléments
         $pictures = $paginator->paginate(
             $allPics,
             $request->query->getInt('page', 1),
@@ -85,19 +93,22 @@ class SecurityController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(User::class);
         $manager = $this->getDoctrine()->getManager();
 
+        // Récuperation du compte administrateur a supprimer
         $user = $repo->find($id);
         $allUsers = $repo->findAll();
 
+        // Vérification empechant de supprimer un administrateur si c'est le dernier.
         if(count($allUsers) === 1) {
             $this->addFlash('error', 'Vous ne pouvez supprimer le dernier administrateur.');
 
             return $this->redirectToRoute('admin_dashboard');
         }
         
-
+        // Suppression du compte administrateur en question
         $manager->remove($user);
         $manager->flush();
 
+        // Ajout d'un message de succes
         $this->addFlash('success', 'L\'utilisateur a bien été supprimé !');
 
         return $this->redirectToRoute('admin_dashboard');
@@ -111,13 +122,17 @@ class SecurityController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Pictures::class);
         $manager = $this->getDoctrine()->getManager();
 
+        // Récupération de la photo dont l'id correspond
         $pic = $repo->find($id);
     
+        // Changement de la valeur 'Valid'
         $pic->setValid(1);
 
+        // Modification de la photo en BDD
         $manager->persist($pic);
         $manager->flush();
 
+        // Ajout d'un message de succes
         $this->addFlash('success', 'La photo a bien été activé !');
 
         return $this->redirectToRoute('admin_dashboard');

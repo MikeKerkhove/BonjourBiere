@@ -2,6 +2,7 @@
 
 {% block body %}
     <br>
+    <div style="padding-top: 3rem;">
     {% for picture in pictures %}
         <div class="card mb-3" style="width: 35rem; margin: auto;">
             <h3 class="card-header">{{ picture.name }}</h3>
@@ -14,7 +15,8 @@
             </div>
         </div>
     {% endfor %}
-    <div class="pagination justify-content-center" style="margin-top: 5rem;">
-        {{ knp_pagination_render(pictures) }}
+        <div class="pagination justify-content-center" style="margin-top: 5rem;">
+            {{ knp_pagination_render(pictures) }}
+        </div>
     </div>
 {% endblock body %}
