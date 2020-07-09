@@ -40,7 +40,7 @@ Just a little site called 'Bonjour la bière' for learn to code in Symfony.
 When the project is running, you have a nav menu at the top. You can browse these pages with.
 All the day at 10am, a new picture is posted.
 You can see old post with the pagination under the picture.
-For the administrator, you can go on Login page to manage this site. Use the username 'vlabs' and the password is 'admin'.
+For the administrator, you can go on Login page to manage this site. Use email 'vlabs@gmail.com' and the password is 'admin'.
 On this page, you can see all the picture in the database. You can validated, delete the pictures and see all administrator accounts.
 
 
