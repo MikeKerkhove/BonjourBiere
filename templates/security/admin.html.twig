@@ -35,7 +35,7 @@
                 {% endif %}
                 <td>
                     {% if pic.valid == 1 %}
-                        <a href="" class="btn btn-outline-danger">Supprimer</a>
+                        <a href="{{ path('security_picture_delete', {'id': pic.id}) }}" class="btn btn-outline-danger">Supprimer</a>
                     {% else %}
                         <a href="{{ path('security_picture_update', {'id': pic.id}) }}" class="btn btn-outline-success">Valider</a>
                         <a href="{{ path('security_picture_delete', {'id': pic.id}) }}" class="btn btn-outline-danger">Supprimer</a>
