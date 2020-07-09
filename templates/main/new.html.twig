@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <br>
+    <h2 class="text-center" style="margin-bottom: 5rem;">Formulaire de proposition de nouvelles photos !</h2>
+    <br>
+    {{ form_start(form) }}
+
+    {{ form_row(form.name, {'attr': {'placeholder': "Nom de la photo"}, 'label': 'Nom :' }) }}
+    {{ form_row(form.link, {'attr': {'placeholder': "URL de la photo"}, 'label': 'Lien :' }) }}
+    {{ form_row(form.proposedBy, {'attr': {'placeholder': "Votre prénom"}, 'label': 'Proposée par :'}) }}
+    <div class="text-center" style="margin-top: 5rem;">
+        <button type="submit" class="btn btn-success">Envoyer la demande</button>
+    </div>
+    {{ form_end(form)}}
+{% endblock body %}
