@@ -1,0 +1,24 @@
+App\Entity\Pictures:
+  pictures{1..5}:
+    name: bière<current()>
+    active: 0
+    link: https://cache.marieclaire.fr/data/photo/w500_ci/4y/biere-blonde.jpg
+    proposedBy: James
+    date: '<date_create()>'
+    valid: 0
+
+  pictures{6..10}:
+    name: bière 1<current()>
+    active: 0
+    link: https://images.anaca3.com/wp-content/uploads/2018/01/biere-brune-grossir-702x336.jpg
+    proposedBy: Marie
+    date: '<date_create()>'
+    valid: 1
+
+  pictures{11..20}:
+    name: bière 2<current()>
+    active: 1
+    link: https://cache.marieclaire.fr/data/photo/w1000_c17/4y/biere-rousse.jpg
+    proposedBy: Tom
+    date: '<date_create()>'
+    valid: 1

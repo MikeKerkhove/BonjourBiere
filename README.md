@@ -12,6 +12,8 @@ Just a little site called 'Bonjour la bière' for learn to code in Symfony.
 
 * Bootstrap
 
+* PHPUnit
+
 # Installation
 
 * Prerequisite
@@ -34,6 +36,11 @@ Just a little site called 'Bonjour la bière' for learn to code in Symfony.
 
 * Feed DB
 `php bin/console doctrine:fixtures:load`
+
+# Test with PHPUnit
+
+For running tests :
+`php bin/phpunit`
 
 # How to use
 
